@@ -28,6 +28,8 @@ d3.json('data.json').then(function (graph) {
             .on("drag", dragged)
             .on("end", dragended));
 
+
+
     node.each(function(_each) {
         _each.append("rect")
             .attr("class", function (d) {
