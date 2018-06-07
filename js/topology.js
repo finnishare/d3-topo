@@ -2,6 +2,7 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
+
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function (d) {
         return d.id;
@@ -29,8 +30,10 @@ d3.json('data.json').then(function (graph) {
 
 
 
-    node.each(function(_each) {
-        _each.append("rect")
+    node.filter(function(d) {
+        return d.level===1;
+    })
+        .append("rect")
             .attr("class", function (d) {
                 return getClassByLevel(d);
             })
@@ -38,7 +41,7 @@ d3.json('data.json').then(function (graph) {
                 return 100;
             })
             .attr("height", 30);
-    })
+
     node.append("text")
         .text(function (d) {
                 return d.value;
