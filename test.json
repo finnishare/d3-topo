@@ -1,0 +1,21 @@
+
+{
+  "nodes": [
+    {"id": "wording", "value":"flight", "level": 0},
+    {"id": "transformation", "parentId":"wording","value":"变形", "level": 1,"group": 1},
+    {"id": "synonym", "parentId":"wording", "value":"同/近义词", "level": 1,"group": 1},
+    {"id": "antonym", "parentId":"wording", "value":"反义词","level": 1,"group": 1},
+    {"id": "001", "parentId":"transformation", "value":"flights","level": 2,"group": 1},
+    {"id": "002", "parentId":"synonym", "value":"fly","level": 2,"group": 1},
+    {"id": "003", "parentId":"synonym", "value":"flying","level": 2,"group": 1},
+    {"id": "004", "parentId":"antonym", "value":"crash","level": 2,"group": 1},
+    {"id": "005", "parentId":"antonym", "value":"sink","level": 2,"group": 1},
+    {"id": "006", "parentId":"antonym", "value":"fall","level": 2,"group": 1}
+  ],
+  "links": [
+    {"source": "wording", "target": "synonym", "value": 1},
+    {"source": "wording", "target": "antonym", "value": 8},
+    {"source": "wording", "target": "transformation", "value": 10}
+
+  ]
+}

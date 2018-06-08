@@ -1,9 +1,9 @@
 .links line {
   stroke: #999;
   stroke-opacity: 0.6;
+  stroke-width:1;
 }
-
-.node {
+.nodes .node {
   rect.level0 {
     fill: rgb(238, 116, 127);
     stroke-width: 0;
@@ -11,6 +11,7 @@
   rect.level1 {
     fill: rgb(238, 116, 127);
     stroke-width: 0;
+    height: 30px;
     rx: 5px;
     ry: 5px;
   }
@@ -20,15 +21,21 @@
   }
   text.level0 {
     fill: rgb(0, 0, 0);
-    font-size: 16px;
+    font-size: 32px;
+    font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
+    cursor: default;
   }
   text.level1 {
     fill: rgb(255, 255, 255);
-    font-size: 12px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
+    cursor: default;
   }
   text.level2 {
     fill: rgb(0, 0, 0);
-    font-size: 14px;
+    font-size: 24px;
+    font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
+    cursor: default;
   }
 }
 
