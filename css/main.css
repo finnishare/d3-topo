@@ -13,6 +13,7 @@ g.node rect.level1 {
   height: 30px;
   rx: 5px;
   ry: 5px;
+  cursor: pointer;
 }
 g.node rect.level2 {
   fill: #ee747f;
@@ -22,18 +23,28 @@ g.node text.level0 {
   fill: #000000;
   font-size: 32px;
   font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
-  cursor: default;
+  cursor: pointer;
 }
 g.node text.level1 {
   fill: #ffffff;
   font-size: 14px;
   font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
-  cursor: default;
+  cursor: pointer;
 }
 g.node text.level2 {
   fill: #000000;
   font-size: 24px;
   font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
-  cursor: default;
+  cursor: pointer;
+}
+g.node circle.fold {
+  fill: #ffffff;
+  cursor: pointer;
+}
+g.node rect.symbol {
+  fill: #ee747f;
+  stroke-width: 0;
+  width: 10px;
+  height: 3px;
 }
 /*# sourceMappingURL=main.css.map */

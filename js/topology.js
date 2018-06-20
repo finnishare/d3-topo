@@ -83,7 +83,7 @@ function update() {
     })
         .append('circle')
         .attr('r', 10)
-        .style("fill", '#fff')
+        .attr("class", 'fold')
         .attr('cx', function (d) {
             return d.data.width - 10 * 2
         })
