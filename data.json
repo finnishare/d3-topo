@@ -1,101 +1,51 @@
 {
-  "nodes": [
+  "value": "flight",
+  "depth":0,
+  "children": [
     {
-      "id": "wording",
-      "value": "flight",
-      "level": 0
-    },
-    {
-      "id": "transformation",
       "value": "变形",
-      "level": 1
+      "width": 80,
+      "depth":1,
+      "children": [
+        {
+          "depth":2,
+          "value": "flights"
+        }
+      ]
     },
     {
-      "id": "synonym",
       "value": "同/近义词",
-      "level": 1
+      "depth":1,
+      "width": 120,
+      "children": [
+        {
+          "depth":2,
+          "value": "fly"
+        },
+        {
+          "depth":2,
+          "value": "flying"
+        }
+      ]
     },
     {
-      "id": "antonym",
       "value": "反义词",
-      "level": 1
-    },
-    {
-      "id": "001",
-      "value": "flights",
-      "level": 2
-    },
-    {
-      "id": "002",
-      "value": "fly",
-      "level": 2
-    },
-    {
-      "id": "003",
-      "value": "flying",
-      "level": 2
-    },
-    {
-      "id": "004",
-      "value": "crash",
-      "level": 2
-    },
-    {
-      "id": "005",
-      "value": "sink",
-      "level": 2
-    },
-    {
-      "id": "006",
-      "value": "fall",
-      "level": 2
-    }
-  ],
-  "links": [
-    {
-      "source": "wording",
-      "target": "synonym",
-      "value": 1
-    },
-    {
-      "source": "wording",
-      "target": "antonym",
-      "value": 8
-    },
-    {
-      "source": "wording",
-      "target": "transformation",
-      "value": 10
-    },
-    {
-      "source": "transformation",
-      "target": "001",
-      "value": 10
-    },
-    {
-      "source": "synonym",
-      "target": "002",
-      "value": 10
-    },
-    {
-      "source": "synonym",
-      "target": "003",
-      "value": 10
-    },
-    {
-      "source": "antonym",
-      "target": "004",
-      "value": 10
-    },
-    {
-      "source": "antonym",
-      "target": "005",
-      "value": 10
-    },
-    {
-      "source": "antonym",
-      "target": "006",
-      "value": 10
+      "depth":1,
+      "width": 100,
+      "children": [
+        {
+          "depth":2,
+          "value": "crash"
+        },
+        {
+          "depth":2,
+          "value": "sink"
+        },
+        {
+          "depth":2,
+          "value": "fall"
+        }
+      ]
     }
   ]
 }

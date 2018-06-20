@@ -1,36 +1,36 @@
-.links line {
+line.link {
   stroke: #999;
   stroke-opacity: 0.6;
-  stroke-width: 1;
+  stroke-width: 0.6px;
 }
-.nodes .node rect.level0 {
+g.node rect.level0 {
   fill: #ee747f;
   stroke-width: 0;
 }
-.nodes .node rect.level1 {
+g.node rect.level1 {
   fill: #ee747f;
   stroke-width: 0;
   height: 30px;
   rx: 5px;
   ry: 5px;
 }
-.nodes .node rect.level2 {
+g.node rect.level2 {
   fill: #ee747f;
   stroke-width: 0;
 }
-.nodes .node text.level0 {
+g.node text.level0 {
   fill: #000000;
   font-size: 32px;
   font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
   cursor: default;
 }
-.nodes .node text.level1 {
+g.node text.level1 {
   fill: #ffffff;
   font-size: 14px;
   font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
   cursor: default;
 }
-.nodes .node text.level2 {
+g.node text.level2 {
   fill: #000000;
   font-size: 24px;
   font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
