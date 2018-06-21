@@ -1,23 +1,15 @@
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
-    g = svg.append("g").attr("transform", "translate(" + (width / 2) + "," + (height / 2 - 80) + ")"),
-    duration = 500;
+    g = svg.append("g").attr("transform", "translate(" + (width / 2) + "," + (height / 2 - 60) + ")"),
+    duration = 800;
 
 var tree = d3.tree()
-    .size([2 * Math.PI, 240])
+    .size([360, height / 2-60])
     .separation(function (a, b) {
         return (a.parent === b.parent ? 1 : 2) / a.depth;
     });
 var i = 0, root;
-d3.json('test.json').then(
-    function (data) {
-        root = tree(d3.hierarchy(data));
-        update(root)
-    }, function (error) {
-        console.error(error);
-    }
-);
 
 function update(source) {
     var oldPosX = source.x,
@@ -28,8 +20,9 @@ function update(source) {
         .data(links, function (d) {
             return d.source.id + '-' + d.target.id;
         });
-    var linkEnter = link.enter().insert("line",'g')
-        .attr("class", "link")
+    var linkEnter = link.enter().insert("line", 'g').attr("class", "link")
+        .attr('targetId',function(d){return d.target.id})
+        .attr('sourceId',function(d){return d.source.id})
         .attr("x1", function (d) {
             return radialPoint(oldPosX, oldPosY)[0] + getLetterOffset(d.source)
         })
@@ -41,7 +34,8 @@ function update(source) {
         })
         .attr("y2", function (d) {
             return radialPoint(oldPosX, oldPosY)[1] + 15
-        })
+        });
+    linkEnter
         .transition()
         .duration(duration)
         .attr("x1", function (d) {
@@ -103,6 +97,7 @@ function update(source) {
     var level1Node = nodeEnter.filter(function (d) {
         return d.depth === 1;
     });
+    level1Node.on("click", click);
     level1Node.append("rect")
         .attr("class", function (d) {
             return getClassByLevel(d);
@@ -116,11 +111,30 @@ function update(source) {
         .attr('cx', function (d) {
             return d.data.width - 10 * 2
         })
-        .attr('cy', 15)
-        .on("click", click);
+        .attr('cy', 15);
 
-    level1Node.append('rect') .attr("class",'symbol');
-
+    level1Node.append('rect')
+        .attr("class", 'symbol horizontal')
+        .attr('x', function (d) {
+            return d.data.width - 10 * 2 - 6
+        })
+        .attr('y', 14.5);
+    level1Node.append('rect')
+        .attr("class", 'symbol vertical')
+        .attr('x', function (d) {
+            return d.data.width - 10 * 2 - 1
+        })
+        .attr('y', 9.5)
+        .style('display', function (d) {
+            return d.children ? 'none' : 'block';
+        });
+    var level2Node = nodeEnter.filter(function (d) {
+        return d.depth === 2;
+    });
+    level2Node.call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
     nodeEnter.append("text")
         .text(function (d) {
             return d.data.value;
@@ -145,6 +159,9 @@ function update(source) {
         .attr("transform", function (d) {
             return 'translate(' + radialPoint(d.x, d.y) + ')'
         });
+    node.select('.symbol.vertical').style('display', function (d) {
+        return d.children ? 'none' : 'block';
+    });
     nodeEnter
         .attr("transform", function (d) {
             return 'translate(' + radialPoint(oldPosX, oldPosY) + ')'
@@ -190,7 +207,9 @@ function getLetterOffset(d) {
 }
 
 function radialPoint(x, y) {
-    return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
+    var angle = (x - 90) / 180 * Math.PI, radius = y;
+    return [radius * Math.cos(angle), radius * Math.sin(angle)];
+    //return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
 }
 
 function flatten(root) {
@@ -217,4 +236,44 @@ function click(d) {
         }
         update(d);
     }
+}
+
+function dragstarted(d) {
+    d.oldX = d.x;
+    d.oldY = d.y;
+    var oldTransform = radialPoint(d.oldX, d.oldY);
+    d.oldRealX = oldTransform[0];
+    d.oldRealY = oldTransform[1];
+    d.linkCurrent = d3.select('line[targetId="'+d.id+'"]');
+
+}
+
+function dragged(d) {
+    d3.select(this).attr("transform", function () {
+        return 'translate(' + (d.oldRealX + d3.event.x - d.oldX) + ',' + (d.oldRealY + d3.event.y - d.oldY) + ')'
+    });
+    d.linkCurrent.attr("x2", function (s) {
+        return d.oldRealX + d3.event.x - d.oldX + getLetterOffset(s.target)
+    }).attr("y2", function () {
+            return d.oldRealY + d3.event.y - d.oldY + 15
+        });
+}
+
+function dragended(d) {
+    d.x = d.oldX;
+    d.y = d.oldY;
+    d3.select(this).transition()
+        .duration(300).attr("transform", function (d) {
+        return 'translate(' + radialPoint(d.x, d.y) + ')'
+    });
+    d.linkCurrent
+        .transition()
+        .duration(300).attr("x2", function (s) {
+        return radialPoint(d.x, d.y)[0] + getLetterOffset(s.target)
+    }).attr("y2", function () {
+        return radialPoint(d.x, d.y)[1] + 15
+    });
+    delete d.oldRealX;
+    delete d.oldRealY;
+    delete  d.linkCurrent;
 }

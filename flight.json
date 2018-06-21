@@ -1,48 +1,38 @@
 {
-  "id": "wording",
   "value": "flight",
   "children": [
     {
-      "id": "transformation",
       "value": "变形",
       "width": 80,
       "children": [
         {
-          "id": "001",
           "value": "flights"
         }
       ]
     },
     {
-      "id": "synonym",
       "value": "同/近义词",
       "width": 120,
       "children": [
         {
-          "id": "002",
           "value": "fly"
         },
         {
-          "id": "003",
           "value": "flying"
         }
       ]
     },
     {
-      "id": "antonym",
       "value": "反义词",
       "width": 100,
       "children": [
         {
-          "id": "004",
           "value": "crash"
         },
         {
-          "id": "005",
           "value": "sink"
         },
         {
-          "id": "006",
           "value": "fall"
         }
       ]

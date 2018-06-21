@@ -1,0 +1,35 @@
+{
+  "value": "fall",
+  "children": [
+    {
+      "value": "短语",
+      "width": 80,
+      "children": [
+        {
+          "value": "fall off"
+        },
+        {
+          "value": "fall in love"
+        }
+      ]
+    },
+    {
+      "value": "同/近义词",
+      "width": 120,
+      "children": [
+        {
+          "value": "autumn"
+        }
+      ]
+    },
+    {
+      "value": "反义词",
+      "width": 100,
+      "children": [
+        {
+          "value": "rise"
+        }
+      ]
+    }
+  ]
+}

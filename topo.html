@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <link href="css/main.css" rel="stylesheet">
+    <title>Topology</title>
+</head>
+<body>
+<h3>Topology</h3>
+<div style="padding:10px;">
+    <button style="margin-right:20px;" onclick="initTopo('flight.json')">flight</button>
+    <button onclick="initTopo('fall.json')">fall</button>
+</div>
+
+<svg width="960" height="600"></svg>
+<script src="lib/d3/d3.min.js"></script>
+<script src="js/topo.js"></script>
+<script>
+    function initTopo(file) {
+        d3.json(file).then(
+            function (data) {
+                root = tree(d3.hierarchy(data));
+                update(root)
+            }, function (error) {
+                console.error(error);
+            }
+        );
+    }
+    //initTopo('flight.json');
+</script>
+</body>
+</html>

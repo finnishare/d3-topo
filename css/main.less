@@ -1,8 +1,9 @@
- line.link {
+line.link {
   stroke: #999;
   stroke-opacity: 0.6;
-   stroke-width: 0.6px;
+  stroke-width: 0.6px;
 }
+
 g.node {
   rect.level0 {
     fill: rgb(238, 116, 127);
@@ -14,7 +15,7 @@ g.node {
     height: 30px;
     rx: 5px;
     ry: 5px;
-    cursor:pointer;
+    cursor: pointer;
   }
   rect.level2 {
     fill: rgb(238, 116, 127);
@@ -38,15 +39,22 @@ g.node {
     font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
     cursor: pointer;
   }
-  circle.fold{
-    fill:rgb(255,255,255);
+  circle.fold {
+    fill: rgb(255, 255, 255);
     cursor: pointer;
   }
-  rect.symbol{
+  rect.symbol {
     fill: rgb(238, 116, 127);
     stroke-width: 0;
-    width:10px;
-    height:3px;
+    &.horizontal {
+      width: 12px;
+      height: 2px;
+    }
+    &.vertical {
+      width: 2px;
+      height: 12px;
+    }
+
   }
 }
 

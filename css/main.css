@@ -44,7 +44,13 @@ g.node circle.fold {
 g.node rect.symbol {
   fill: #ee747f;
   stroke-width: 0;
-  width: 10px;
-  height: 3px;
+}
+g.node rect.symbol.horizontal {
+  width: 12px;
+  height: 2px;
+}
+g.node rect.symbol.vertical {
+  width: 2px;
+  height: 12px;
 }
 /*# sourceMappingURL=main.css.map */
