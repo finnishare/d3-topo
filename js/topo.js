@@ -1,11 +1,11 @@
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
-    g = svg.append("g").attr("transform", "translate(" + (width / 2) + "," + (height / 2 - 60) + ")"),
-    duration = 800;
+    g = svg.append("g").attr("transform", "translate(" + (width / 2) + "," + (height / 2 - 40) + ")"),
+    duration = 600;
 
 var tree = d3.tree()
-    .size([360, height / 2-60])
+    .size([360, height / 2 - 40])
     .separation(function (a, b) {
         return (a.parent === b.parent ? 1 : 2) / a.depth;
     });
@@ -36,8 +36,13 @@ function update(source) {
             return radialPoint(oldPosX, oldPosY)[1] + 15
         });
     linkEnter
+        .style("opacity", 0)
         .transition()
         .duration(duration)
+         .delay(function(d,i) {
+            return (d.target.depth-1>=0?d.target.depth-1:0)*duration;
+        })
+        .style("opacity", 1)
         .attr("x1", function (d) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
@@ -66,8 +71,13 @@ function update(source) {
         });
 
     var lineExit = link.exit()
+        .style("opacity", 1)
         .transition()
         .duration(duration)
+        .delay(function(d) {
+            return (2-d.target.depth)*duration;
+        })
+        .style("opacity", 0)
         .attr("x1", function (d) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
@@ -164,18 +174,28 @@ function update(source) {
     });
     nodeEnter
         .attr("transform", function (d) {
-            return 'translate(' + radialPoint(oldPosX, oldPosY) + ')'
+            return 'translate(' + radialPoint(d.parent?d.parent.x:0, d.parent?d.parent.y:0) + ')'
         })
+        .style("opacity", 0)
         .transition()
         .duration(duration)
+        .delay(function(d) {
+            return (d.depth-1>=0?d.depth-1:0)*duration;
+        })
+        .style("opacity", 1)
         .attr("transform", function (d) {
             return 'translate(' + radialPoint(d.x, d.y) + ')'
         });
     node.exit()
+        .style("opacity", 1)
         .transition()
         .duration(duration)
+        .delay(function(d) {
+            return (2-d.depth)*duration;
+        })
+        .style("opacity", 0)
         .attr("transform", function (d) {
-            return "translate(" + radialPoint(source.x, source.y) + ")";
+            return "translate(" + radialPoint(d.parent?d.parent.x:0, d.parent?d.parent.y:0) + ")";
         })
         .remove();
 }
@@ -217,7 +237,7 @@ function flatten(root) {
 
     function recurse(node) {
         if (node.children) node.children.forEach(recurse);
-        if (!node.id) node.id = ++i;
+        if (!node.id) node.id = root.data.id+'-'+(++i);
         nodes.push(node);
     }
 

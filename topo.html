@@ -9,7 +9,8 @@
 <h3>Topology</h3>
 <div style="padding:10px;">
     <button style="margin-right:20px;" onclick="initTopo('flight.json')">flight</button>
-    <button onclick="initTopo('fall.json')">fall</button>
+    <button style="margin-right:20px;" onclick="initTopo('fall.json')">fall</button>
+    <button onclick="destroy()">destroy</button>
 </div>
 
 <svg width="960" height="600"></svg>
@@ -26,7 +27,7 @@
             }
         );
     }
-    //initTopo('flight.json');
+    initTopo('flight.json');
 </script>
 </body>
 </html>
