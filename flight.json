@@ -1,50 +1,20 @@
 {
   "id": "flight",
   "value": "flight",
+  "detail":{
+"soundmark":"[flaɪt]",
+"translate":[
+  {"type":"n","chinese":"飞行；班机；逃走"},
+  {"type":"vt","chinese":"射击；使惊飞"},
+  {"type":"vi","chinese":"迁徙"},
+  {"type":"n","chinese":"(Flight)人名；(英)弗莱"}
+]
+  },
   "children": [
     {
       "value": "变形",
       "width": 80,
       "children": [
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
-        {
-          "value": "flights"
-        },
         {
           "value": "flights"
         }
@@ -54,42 +24,6 @@
       "value": "同/近义词",
       "width": 120,
       "children": [
-        {
-          "value": "fly"
-        },
-        {
-          "value": "flying"
-        },
-        {
-          "value": "fly"
-        },
-        {
-          "value": "flying"
-        },
-        {
-          "value": "fly"
-        },
-        {
-          "value": "flying"
-        },
-        {
-          "value": "fly"
-        },
-        {
-          "value": "flying"
-        },
-        {
-          "value": "fly"
-        },
-        {
-          "value": "flying"
-        },
-        {
-          "value": "fly"
-        },
-        {
-          "value": "flying"
-        },
         {
           "value": "fly"
         },

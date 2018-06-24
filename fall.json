@@ -1,6 +1,7 @@
 {
   "id": "fall",
   "value": "fall",
+  "detail":{"soundmark":"[fɔːl]"},
   "children": [
     {
       "value": "短语",

@@ -56,5 +56,38 @@ g.node {
     }
 
   }
+  rect.trumpet{
+    width:18px;
+    height:18px;
+    cursor:pointer;
+  }
+}
+.tip{
+  position: absolute;
+  left:0;
+  top:0;
+  width:200px;
+  min-height:60px;
+  border:2px solid #6daefe;
+  background:#ffffff;
+  border-radius: 3px;
+  .tip-head{
+    background:#6daefe;
+    border-top :1px solid #ffffff;
+    color:#ffffff;
+    padding:0 10px;
+    height:30px;
+    line-height:30px;
+  }
+  ul{
+    list-style:none;
+    margin:0;
+    padding:10px;
+    li{
+      margin-bottom:10px;
+      font-size:14px;
+      &:last-child{margin-bottom:0}
+    }
+  }
 }
 
