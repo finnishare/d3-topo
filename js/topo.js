@@ -1,11 +1,11 @@
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
-    g = svg.append("g").attr("transform", "translate(" + (width / 2) + "," + (height / 2 - 20) + ")"),
+    g = svg.append("g"),
     duration = 500;
 
-var tree = d3.tree()
-    .size([360, height / 2 - 40])
+var tree = d3.cluster()//d3.tree()
+    .size([360, height / 2 - 10])
     .separation(function (a, b) {
         return (a.parent === b.parent ? 1 : 2) / a.depth;
     });
@@ -15,6 +15,9 @@ function init(file) {
     d3.json(file).then(
         function (data) {
             root = tree(d3.hierarchy(data));
+            width = +svg.attr("width");
+            height = +svg.attr("height");
+            g.attr("transform", "translate(" + (width / 2 - 30) + "," + (height / 2 - 17) + ")");
             update(root)
         }, function (error) {
             console.error(error);
@@ -32,9 +35,22 @@ function changeWording(d) {
 
 }
 
+function resizeSvg(width, height) {
+    svg.attr('width', width).attr('height', height);
+    tree.size([360, height / 2 - 10]);
+    g.attr("transform", "translate(" + (width / 2 - 30) + "," + (height / 2 - 17) + ")");
+    update(root)
+}
+
 function update(source) {
     var nodes = root ? flatten(root) : [],
         links = root ? tree(root).links() : [];
+    if (root && !root.children && root._children) {
+        root.x = 180;
+    }
+    if (root && root.children && root.children.length === 1) {
+        reLayout(root.children[0].children);
+    }
     var link = g.selectAll(".link")
         .data(links, function (d) {
             return d.source.id + '-' + d.target.id;
@@ -50,13 +66,13 @@ function update(source) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
         .attr("y1", function (d) {
-            return radialPoint(d.source.x, d.source.y)[1] + 15
+            return radialPoint(d.source.x, d.source.y)[1] + 10
         })
         .attr("x2", function (d) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.target)
         })
         .attr("y2", function (d) {
-            return radialPoint(d.source.x, d.source.y)[1] + 15
+            return radialPoint(d.source.x, d.source.y)[1] + 10
         });
     linkEnter
         .style("opacity", 0)
@@ -70,13 +86,13 @@ function update(source) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
         .attr("y1", function (d) {
-            return radialPoint(d.source.x, d.source.y)[1] + 15
+            return radialPoint(d.source.x, d.source.y)[1] + 10
         })
         .attr("x2", function (d) {
             return radialPoint(d.target.x, d.target.y)[0] + getLetterOffset(d.target)
         })
         .attr("y2", function (d) {
-            return radialPoint(d.target.x, d.target.y)[1] + 15
+            return radialPoint(d.target.x, d.target.y)[1] + 10
         });
     link.transition()
         .duration(duration)
@@ -84,13 +100,13 @@ function update(source) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
         .attr("y1", function (d) {
-            return radialPoint(d.source.x, d.source.y)[1] + 15
+            return radialPoint(d.source.x, d.source.y)[1] + 10
         })
         .attr("x2", function (d) {
             return radialPoint(d.target.x, d.target.y)[0] + getLetterOffset(d.target)
         })
         .attr("y2", function (d) {
-            return radialPoint(d.target.x, d.target.y)[1] + 15
+            return radialPoint(d.target.x, d.target.y)[1] + 10
         });
 
     var lineExit = link.exit()
@@ -105,13 +121,13 @@ function update(source) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
         .attr("y1", function (d) {
-            return radialPoint(d.source.x, d.source.y)[1] + 15
+            return radialPoint(d.source.x, d.source.y)[1] + 10
         })
         .attr("x2", function (d) {
             return radialPoint(d.source.x, d.source.y)[0] + getLetterOffset(d.source)
         })
         .attr("y2", function (d) {
-            return radialPoint(d.source.x, d.source.y)[1] + 15
+            return radialPoint(d.source.x, d.source.y)[1] + 10
         })
         .remove();
 
@@ -142,25 +158,25 @@ function update(source) {
             return d.data.width;
         });
     level1Node.append('circle')
-        .attr('r', 10)
+        .attr('r', 8)
         .attr("class", 'fold')
         .attr('cx', function (d) {
-            return d.data.width - 10 * 2
+            return d.data.width - 8 - 5
         })
-        .attr('cy', 15);
+        .attr('cy', 12);
 
     level1Node.append('rect')
         .attr("class", 'symbol horizontal')
         .attr('x', function (d) {
-            return d.data.width - 10 * 2 - 6
+            return d.data.width - 8 - 5 - 5
         })
-        .attr('y', 14.5);
+        .attr('y', 11);
     level1Node.append('rect')
         .attr("class", 'symbol vertical')
         .attr('x', function (d) {
-            return d.data.width - 10 * 2 - 1
+            return d.data.width - 8 - 5 - 1
         })
-        .attr('y', 9.5)
+        .attr('y', 7)
         .style('display', function (d) {
             return d.children ? 'none' : 'block';
         });
@@ -179,8 +195,8 @@ function update(source) {
         .attr("class", function (d) {
             return getClassByLevel(d);
         })
-        .attr('x', 10)
-        .attr('y', 20)
+        .attr('x', 5)
+        .attr('y', 17)
         .filter(function (d) {
             return d.depth !== 1;
         })
@@ -194,7 +210,7 @@ function update(source) {
         .append('rect')
         .attr('x', function (d) {
             // console.log(level0Node.select('text'));
-            return (d.data.value.length || 1) * 13 + 16;
+            return (d.data.value.length || 1) * 12;
         })
         .attr('y', -5)
         .attr('fill', 'url(#trumpetIcon)')
@@ -255,13 +271,13 @@ function getClassByLevel(d) {
 function getLetterOffset(d) {
     switch (d.depth) {
         case 0 :
-            return (d.data.value.length || 1) * 13 / 2;
+            return (d.data.value.length || 1) * 12 / 2;
         case 1 :
-            return 100 / 2;
+            return (d.data.width || 100) / 2;
         case 2 :
-            return (d.data.value.length || 1) * 13 / 2;
+            return (d.data.value.length || 1) * 11 / 2;
         default :
-            return (d.data.value.length || 1) * 13 / 2;
+            return (d.data.value.length || 1) * 11 / 2;
     }
 }
 
@@ -373,4 +389,12 @@ function removeTip() {
 function pronunciation() {
     console.log('pronunciation fun here');
     d3.event.stopPropagation()
+}
+
+function reLayout(lastChildren) {
+    if (lastChildren && lastChildren.length > 1) {
+        for (var t = 0; t < lastChildren.length; t++) {
+            lastChildren[t].x = (180 / lastChildren.length) * t + 90;
+        }
+    }
 }

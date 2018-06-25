@@ -5,7 +5,7 @@
   "children": [
     {
       "value": "短语",
-      "width": 80,
+      "width": 60,
       "children": [
         {
           "value": "fall off"
@@ -17,7 +17,7 @@
     },
     {
       "value": "同/近义词",
-      "width": 120,
+      "width": 95,
       "children": [
         {
           "value": "autumn"
@@ -26,9 +26,17 @@
     },
     {
       "value": "反义词",
-      "width": 100,
+      "width": 75,
       "children": [
         {
+          "value": "rise"
+        }, {
+          "value": "rise"
+        }, {
+          "value": "rise"
+        }, {
+          "value": "rise"
+        }, {
           "value": "rise"
         }
       ]

@@ -13,8 +13,14 @@
   "children": [
     {
       "value": "变形",
-      "width": 80,
+      "width": 60,
       "children": [
+        {
+          "value": "flights"
+        },
+        {
+          "value": "flights"
+        },
         {
           "value": "flights"
         }
@@ -22,8 +28,14 @@
     },
     {
       "value": "同/近义词",
-      "width": 120,
+      "width": 95,
       "children": [
+        {
+          "value": "fly"
+        },
+        {
+          "value": "fly"
+        },
         {
           "value": "fly"
         },
@@ -34,7 +46,7 @@
     },
     {
       "value": "反义词",
-      "width": 100,
+      "width": 75,
       "children": [
         {
           "value": "crash"

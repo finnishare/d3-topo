@@ -10,9 +10,9 @@ g.node rect.level0 {
 g.node rect.level1 {
   fill: #ee747f;
   stroke-width: 0;
-  height: 30px;
-  rx: 5px;
-  ry: 5px;
+  height: 24px;
+  rx: 3px;
+  ry: 3px;
   cursor: pointer;
 }
 g.node rect.level2 {
@@ -21,20 +21,20 @@ g.node rect.level2 {
 }
 g.node text.level0 {
   fill: #000000;
-  font-size: 32px;
-  font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
+  font-size: 24px;
+  font-family: "Source Sans", "Microsoft YaHei", helvetica, arial, sans-serif;
   cursor: pointer;
 }
 g.node text.level1 {
   fill: #ffffff;
   font-size: 14px;
-  font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
+  font-family: "Source Sans", "Microsoft YaHei", helvetica, arial, sans-serif;
   cursor: pointer;
 }
 g.node text.level2 {
   fill: #000000;
-  font-size: 24px;
-  font-family: "Microsoft YaHei", "Source Sans", helvetica, arial, sans-serif;
+  font-size: 18px;
+  font-family: "Source Sans", "Microsoft YaHei", helvetica, arial, sans-serif;
   cursor: pointer;
 }
 g.node circle.fold {
@@ -46,16 +46,16 @@ g.node rect.symbol {
   stroke-width: 0;
 }
 g.node rect.symbol.horizontal {
-  width: 12px;
+  width: 10px;
   height: 2px;
 }
 g.node rect.symbol.vertical {
   width: 2px;
-  height: 12px;
+  height: 10px;
 }
 g.node rect.trumpet {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 .tip {
