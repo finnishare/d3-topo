@@ -1,0 +1,16 @@
+{
+  "name": "d3-topo",
+  "description": "d3 topo",
+  "version": "0.0.1",
+  "license": "SEE LICENSE IN <README.md>",
+  "repository": "http://www.github.com",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "start": "http-server -a 127.0.0.1 -p 8082"
+  },
+  "dependencies": {
+    "d3": "^5.9.2"
+  }
+}
