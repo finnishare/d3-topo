@@ -11,6 +11,6 @@
     "start": "http-server -a 127.0.0.1 -p 8082"
   },
   "dependencies": {
-    "d3": "^5.9.2"
+    "d3": "^7.6.1"
   }
 }
